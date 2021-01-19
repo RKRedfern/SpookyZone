@@ -1,1 +1,6 @@
-<h1>SHOW</h1>
+
+<h1> Hi, <%= @user.username %> </h1>
+
+<%= form_tag( "/logout", method:'delete' ) do %>
+    <%= submit_tag "Logout" %>
+<% end %>
