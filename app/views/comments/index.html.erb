@@ -1,0 +1,11 @@
+<% if @story %>
+    <h1> Comments for <%= @story.title %></h1>
+<% else %>
+    <h1> All Comments </h1>
+<% end %>
+
+<ul>
+<% @comments.each do |c| %>
+<li><%= c.user.username %> says "<%= c.content%>" about this story: <strong><%= link_to c.story.title, story_path(c.story_id) %></strong></li>
+<% end %>
+</ul>
