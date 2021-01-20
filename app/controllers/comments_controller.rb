@@ -1,24 +1,12 @@
 class CommentsController < ApplicationController
     before_action :redirect_if_not_logged_in
-    before_action :set_comment, only: [:show, :edit, :update]
-    before_action :redirect_if_not_comment_author, only: [:edit, :update]
 
-    def index 
-        if params[:story_id] && @story = Story.find_by_id(params[:story_id])
-            @comments = @story.comments
-        else 
-            @error = "That story doesn't seem to exist" if params[:story_id]
-            @comments = Comment.all
-        end
+    def index
+        @comments = Comment.all
     end
 
-    def new 
-        if params[:story_id] && @story = Story.find_by_id(params[:story_id])
-            @comment = @story.comments.build
-        else
-            @error = "That story doesn't seem to exist" if params[:post_id]
-            @comment = Comment.new
-        end
+    def new
+        @comment = Comment.new
     end
 
     def create
@@ -30,35 +18,27 @@ class CommentsController < ApplicationController
         end
     end
 
-    def show 
+    def show
+        @comment = Comment.find_by(id: params[:id])
     end
 
-    def edit 
+    def edit
+        @comment = Comment.find_by(id: params[:id])
     end
 
     def update
-        if comment.update(comment_params)
-            redirect_to comment_path
-        else 
+        @comment = Comment.find_by(id: params[:id])
+        if @comment.update(comment_params)
+            redirect_to comment_path(@comment)
+        else
             render :edit
         end
     end
 
-    private 
+    private
 
     def comment_params
-        params.require(:comment).permit(:content, :post_id)
+        params.require(:comment).permit(:content,:story_id)
     end
 
-    def set_comment
-        @comment = Comment.find_by(id: params[:id])
-        if !@comment
-            flash[:message] = "That comment doesn't exist"
-        redirect_to comments_path
-        end
-    end
-
-    def redirect_if_not_comment_author
-        redirect_to comments_path if @comment.user != current_user
-    end
 end

@@ -20,7 +20,3 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
 
-
-#<ActionController::Parameters {"authenticity_token"=>"Dm8fvQbuuJnmNsYNkB_BrM-ix5qRa_zxsvQiRrqPqz8eapf4xca7WPrdlfmOVXhSW05BdBJVNnfSTG1mozawrg", 
-
-# "story"=>{"title"=>"Scary", "content"=>"Very VERY SCARY"}, "commit"=>"Create Story", "controller"=>"stories", "action"=>"create"} permitted: false>

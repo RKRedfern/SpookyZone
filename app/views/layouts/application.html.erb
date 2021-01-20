@@ -13,13 +13,10 @@
   <body>
 
     <div>
-      <% if logged_in?%>
-      <%= link_to "Write a Story", new_story_path %> 
-      <%= link_to "All Stories", stories_path %> 
-
-      <%= link_to "Add a Comment", new_comment_path %> 
-
-      <%= link_to "Home", user_path(current_user)%> 
+<% if logged_in?%>
+      <%= link_to "Write A Story", new_story_path %> |
+      <%= link_to "All Stories", stories_path %> |
+      <%= link_to "Add a Comment", new_comment_path %> |
       <%= link_to "Logout", logout_path, method:"delete"%>
 
       <% else %>

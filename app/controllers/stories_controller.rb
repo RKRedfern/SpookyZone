@@ -6,7 +6,7 @@ class StoriesController < ApplicationController
     end
 
     def index 
-
+        @stories = Story.all
     end
 
     def create 
@@ -22,8 +22,13 @@ class StoriesController < ApplicationController
     
     end
 
+    def destroy
+
+    end
+
     def show
-        
+        @story = Story.find_by_id(params[:id])
+        redirect_to stories_path if !@story
     end
     
 

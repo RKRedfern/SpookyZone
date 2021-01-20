@@ -1,17 +1,9 @@
-<% if @comment.story %>
-<h1> Write a Comment for <%= @comment.story.title %> </h1>
-<% else %>
-<h1> New Comment </h1>
-<% end %>
+<h1>New Comment!</h1>
 
-<%= form_for([@comment.story,@comment]) do |f|%>
+<%= form_for(@comment) do |f|%>
 
-    <% if !@comment.story %>
-        <%= f.label :story %>
-        <%= f.collection_select :story_id, Story.all, :id, :title %>
-    <% else %>
-        <%= f.hidden_field :story_id %>
-    <% end %>
+    <%= f.label :story %>
+    <%= f.collection_select :story_id, Story.all, :id, :title %>
 
     <%= f.label :content %>
     <%= f.text_field :content %>
@@ -19,4 +11,4 @@
 
     <%= f.submit %>
 
-<% end %>
+<% end %> 

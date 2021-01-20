@@ -1,2 +1,10 @@
 <h1> All Stories </h1>
 
+<ul>
+    <% @stories.each do |s|%>
+        <li><%= link_to s.title, story_path(s) %> - <%= s.title %> </li>
+    <% end %>
+</ul>
+
+
+

@@ -1,0 +1,10 @@
+<h1><%=@story.title%></h1>
+<h2>By: <%=@story.user.username%> </h2>
+
+
+<div><%= @story.content%></div>
+
+<h4>Comments:</h4>
+<% @story.comments.each do |c|%>
+    <li><strong><%= c.user.username%></strong> says "<%= link_to c.content, comment_path(c)%>" </li>
+<% end %>
