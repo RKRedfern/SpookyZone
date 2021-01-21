@@ -8,3 +8,8 @@
 <% @story.comments.each do |c|%>
     <li><strong><%= c.user.username%></strong> says "<%= link_to c.content, comment_path(c)%>" </li>
 <% end %>
+
+#include some logic here that displays the 'top comment' THEN links to all comments?
+<p><%= link_to 'See all comments', story_comments_path(@story) %></p>
+
+<p><%= link_to 'Comment on this story...', new_story_comment_path(@story) %></p>

@@ -10,15 +10,16 @@ Rails.application.routes.draw do
 
   delete '/logout' => 'sessions#destroy'
 
+  get "/auth/google_oauth2/callback" => 'sessions#google'
+
   
   resources :stories do 
-    resources :comments, only: [:new, :create, :index]
+    resources :comments
   end
   
   resources :comments
-  
   resources :users do 
-    resources :stories, only: [:new, :create, :index]
+    resources :stories, shallow: true
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

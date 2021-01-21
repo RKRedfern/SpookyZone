@@ -2,11 +2,20 @@ class StoriesController < ApplicationController
     before_action :redirect_if_not_logged_in
 
     def new
-        @story = Story.new
+        if params[:user_id] && @user = User.find_by_id(params[:user_id])
+            @story = @user.story.build
+        else
+            @story = Story.new
+        end
     end
 
     def index 
-        @stories = Story.all
+        if params[:user_id] && @user = User.find_by_id(params[:user_id])
+            @story = @story.posts.build
+        else
+            @error = "That user doesn't exist" if params[:user_id]
+            @stories = Story.all
+        end
     end
 
     def create 
