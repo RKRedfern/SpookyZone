@@ -2,7 +2,13 @@ class CommentsController < ApplicationController
     before_action :redirect_if_not_logged_in
 
     def index
-        @comments = Comment.all
+        #check if it's nested AND check if this method returns anything - nil or something 
+        if params[:story_id] && @story = Story.find_by_id(params[:story_id])
+            @comments = @story.comments
+        else
+            @error = "That story doesn't exist" if params[:story_id]
+            @comments = Comment.all
+        end
     end
 
     def new

@@ -13,7 +13,7 @@
   <body>
 
     <div>
-<% if logged_in?%>
+    <% if logged_in?%>
       <%= link_to "Write A Story", new_story_path %> |
       <%= link_to "All Stories", stories_path %> |
       <%= link_to "Add a Comment", new_comment_path %> |
@@ -22,8 +22,11 @@
       <% else %>
       <%=link_to "Sign Up", signup_path %> 
       <%=link_to "Log In", login_path %>
-      <% end %>
+    <% end %>
+    </div>
 
+    <div>
+      <%= @error %>
     </div>
 
     <%= yield %>
