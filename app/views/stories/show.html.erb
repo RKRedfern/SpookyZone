@@ -13,3 +13,9 @@
 <p><%= link_to 'See all comments', story_comments_path(@story) %></p>
 
 <p><%= link_to 'Comment on this story...', new_story_comment_path(@story) %></p>
+
+<% if @story.user == current_user %>
+<h4><%= link_to "Edit This Story", edit_story_path(@story)%></h4>
+
+<h4><%= link_to "Delete This Story", stories_path(@story), method:'delete'%></h4>
+<% end %>
