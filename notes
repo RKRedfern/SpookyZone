@@ -24,3 +24,5 @@ Genre
 - has_many :users, through: :posts
 
 
+
+

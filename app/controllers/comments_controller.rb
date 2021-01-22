@@ -13,10 +13,10 @@ class CommentsController < ApplicationController
 
     def new
         if params[:story_id] && @story = Story.find_by_id(params[:story_id])
-            @comments = @story.comments.build
+            @comment = @story.comments.build
         else
             @error = "That story doesn't exist" if params[:story_id]
-            @comments = Comment.new
+            @comment = Comment.new
         end
     end
 
