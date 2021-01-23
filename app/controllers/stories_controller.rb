@@ -11,7 +11,7 @@ class StoriesController < ApplicationController
 
     def index 
         if params[:user_id] && @user = User.find_by_id(params[:user_id])
-            @stories = @user.stories.build
+            @stories = @user.stories
         else
             @error = "That user doesn't exist" if params[:user_id]
             @stories = Story.all.alpha

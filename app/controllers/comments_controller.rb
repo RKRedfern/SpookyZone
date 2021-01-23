@@ -12,11 +12,13 @@ class CommentsController < ApplicationController
     end
 
     def new
+        #If there is a story id present, and if we can successfully find that post by the id given
         if params[:story_id] && @story = Story.find_by_id(params[:story_id])
             @comment = @story.comments.build
         else
             @error = "That story doesn't exist" if params[:story_id]
             @comment = Comment.new
+        #if there is no story id present we just carry on living our lives. 
         end
     end
 
