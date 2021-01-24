@@ -3,8 +3,20 @@
 <h2>Written by: <%= @story.user.username %> </h2>
 
 
+
 <div><%= @story.content%></div>
 <br/>
+
+
+<% if @story.user == current_user %>
+<%= link_to 'Edit Story', edit_story_path(@story)%>
+<%= link_to 'Delete this story?', story_path(@story), method: 'delete' %>
+<% end %>
+
+<br/>
+
+<p><%= link_to 'Add a new comment', new_story_comment_path(@story)%>
+
 
 <% if !@story.comments.empty? %>
     
@@ -14,7 +26,6 @@
         <strong><%= c.user.username%></strong> says "<%= link_to c.content, story_comment_path(@story,c)%>" at <%= c.updated_at.strftime("%m/%d/%Y") %>
     </li>
 <br/>
-<p> <%= link_to 'Add a new comment', new_story_comment_path(@story)%> |
     <%= link_to 'See all comments', story_comments_path(@story)%> 
 </p>
     <% end %>

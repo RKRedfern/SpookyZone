@@ -15,16 +15,16 @@
 
 <div class="container">
   <ul class="nav nav-tabs">
+    
     <div>
-      <% if logged_in?%>
+      <% if logged_in? %>
         <%= link_to "Write A Story", new_story_path %> |
         <%= link_to "All Stories", stories_path %> |
+        <%= link_to "All Comments", comments_path %> |
         <%= link_to "Add a Comment", new_comment_path %> |
         <%= link_to "Home", user_path(current_user)%> |
         <%= link_to "Logout", logout_path, method:"delete"%>
-        <% else %>
-
-      <% end %>
+    <% end %>
     </div>
       <% if flash[:message] %>
       <%= flash[:message]%>

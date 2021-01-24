@@ -1,0 +1,5 @@
+<ul>
+<% @comments.each do |c|%>
+    <li><%= c.user.username%> says "<%= c.content%>" about this story: <strong><%= link_to c.story.title, story_path(c.story_id) %></strong></li>
+<% end %>
+</ul>

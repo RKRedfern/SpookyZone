@@ -3,6 +3,7 @@ class Story < ApplicationRecord
   has_many :comments
   has_many :users, through: :comments
 
+
   validates :title, :content, uniqueness: true
   validates :title, :content, presence: true
   validate :aggressive_authoring
@@ -15,8 +16,8 @@ class Story < ApplicationRecord
         s.created_at.try(:to_date) == Date.today
     end
 
-    if stories_today.size > 2 
-      errors.add(:story_id, "You may not post more than twice per day.")
+    if stories_today.size > 5 
+      errors.add(:story_id, "You may not post more than five times per day.")
     end
   end
 

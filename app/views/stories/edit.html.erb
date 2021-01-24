@@ -1,6 +1,8 @@
-<h1>Edit <%= @story.title%>!</h1>
+
+<h1>Edit <%= @story.title%></h1>
 
 <%= render partial: "layouts/errors", locals: {object: @story} %>
+
 
 <%= form_for(@story) do |f|%>
 
@@ -8,7 +10,7 @@
     <%= f.text_field :title %>
     
     <%= f.label :content %>
-    <%= f.text_area :content %>
+    <%= f.text_field :content %>
 
 
     <%= f.submit %>

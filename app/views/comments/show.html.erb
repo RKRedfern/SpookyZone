@@ -1,8 +1,11 @@
 
-<h2><%= @comment.content%> - <%= @comment.user.username%></h2>
+
+
+<h4><%= @comment.content %> - <%= @comment.user.username%></h4>
 
 <% if @comment.user == current_user %>
     <%= link_to "Edit Comment", edit_comment_path(@comment)%>
+    <%= link_to "Delete Comment", comment_path(@comment), method: 'delete' %>
 <% end %>
 
-<h4>Read the post here: <%= link_to @comment.post.title, post_path(@comment.post_id) %></h4>
+<h4>Read the story here: <%= link_to @comment.story.title, story_path(@comment.story_id) %></h4>
