@@ -1,16 +1,22 @@
-<% if @story %>
-<h1> New Comment On <%= @story.title %> </h1>
+
+<% if @comment.story %>
+<h1>New Comment for <%= @comment.story.title%></h1>
 <% else %>
-<h1>New Comment!</h1>
+<h1>New Comment</h1>
 <% end %>
+
+
 
 <%= render partial: "layouts/errors", locals: {object: @comment} %>
 
-<%= form_for(@comment) do |f|%>
+<%= form_for([@comment.story,@comment]) do |f|%>
 
+<% if !@comment.story %>
     <%= f.label :story %>
     <%= f.collection_select :story_id, Story.all, :id, :title %>
-
+<% else %>
+    <%= f.hidden_field :story_id %>
+<% end %>
 
     <%= f.label :content %>
     <%= f.text_field :content %>
@@ -18,4 +24,4 @@
 
     <%= f.submit %>
 
-<% end %> 
+<% end %>

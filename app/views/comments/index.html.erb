@@ -1,4 +1,8 @@
-<h1>All Comments</h1>
+<% if @story %>
+    <h1>Comments for <%= @story.title%></h1>
+<% else %>
+    <h1>All Comments</h1>
+<% end %>
 
 <ul>
 <% @comments.each do |c|%>
