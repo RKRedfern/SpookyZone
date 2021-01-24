@@ -1,19 +1,22 @@
+
 <h1><%=@story.title%></h1>
-<h2>By: <%=@story.user.username%> </h2>
+<h2>Written by: <%= @story.user.username %> </h2>
 
 
 <div><%= @story.content%></div>
+<br/>
 
-<h4>Comments:</h4>
-<% @story.comments.each do |c|%>
-    <li><strong><%= c.user.username%></strong> says "<%= link_to c.content, comment_path(c)%>" </li>
+<% if !@story.comments.empty? %>
+    
+    <h5>Most Recent Comments:</h5>
+    <% @story.comments.order(updated_at: :desc).limit(3).each do |c|%>
+    <li>
+        <strong><%= c.user.username%></strong> says "<%= link_to c.content, story_comment_path(@story,c)%>" at <%= c.updated_at.strftime("%m/%d/%Y") %>
+    </li>
+<br/>
+<p> <%= link_to 'Add a new comment', new_story_comment_path(@story)%> |
+    <%= link_to 'See all comments', story_comments_path(@story)%> 
+</p>
+    <% end %>
 <% end %>
 
-#include some logic here that displays the 'top comment' THEN links to all comments?
-<p><%= link_to 'See all comments', story_comments_path(@story) %></p>
-
-<p><%= link_to 'Comment on this story...', new_story_comment_path(@story) %></p>
-
-<% if @story.user == current_user %>
-<h4><%= link_to "Edit This Story", edit_story_path(@story)%></h4>
-<% end %>

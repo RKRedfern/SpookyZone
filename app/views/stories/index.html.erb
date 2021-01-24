@@ -1,10 +1,10 @@
 <h1> All Stories </h1>
 
-<ul>
-    <% @stories.each do |s|%>
-        <li><%= link_to s.title, story_path(s) %> - Authored By: <%= s.user.username %> - Number of Comments: <%= s.comments.size %> </li>
-    <% end %>
-</ul>
+<% if @stories.blank? %>
 
+    <h2>No stories yet... write one: <%= link_to "here", new_story_path%></h2>
 
+<% else %>
+    <%= render partial: "stories", locals: {stories: @stories} %>
 
+<% end %>

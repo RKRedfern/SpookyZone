@@ -1,0 +1,7 @@
+
+<ul>
+    <% @stories.each do |s|%>
+        <li><%= link_to s.title, story_path(s) %> - Authored By: <%= s.user.username %> - Number of Comments: <%= s.comments.size %> </li>
+    <% end %>
+</ul>
+
