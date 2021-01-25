@@ -2,7 +2,7 @@
 
 <% if @stories.blank? %>
 
-    <h2>No stories yet... write one: <%= link_to "here", new_story_path%></h2>
+    <h5>No stories yet... write one! <%= link_to "here", new_story_path%></h5>
 
 <% else %>
     <%= render partial: "stories", locals: {stories: @stories} %>

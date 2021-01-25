@@ -1,6 +1,6 @@
 
 <ul>
     <% stories.each do |s|%>
-        <li><%= link_to s.title, story_path(s) %> - <%= s.title %> </li>
+        <li><%= link_to s.title, story_path(s) %> - <%= s.user.username %> </li>
     <% end %>
 </ul>

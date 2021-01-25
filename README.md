@@ -22,3 +22,8 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+Welcome to SpookyZone! 
+
+A place for authors of horror fiction to share their stories with one another and the web. 
+

@@ -1,6 +1,6 @@
 
 <h1><%=@story.title%></h1>
-<h2>Written by: <%= @story.user.username %> </h2>
+<h5>Written by: <%= @story.user.username %> </h5>
 
 
 
@@ -9,8 +9,8 @@
 
 
 <% if @story.user == current_user %>
-<%= link_to 'Edit Story', edit_story_path(@story)%>
-<%= link_to 'Delete this story?', story_path(@story), method: 'delete' %>
+<%= link_to 'Edit Story', edit_story_path(@story)%> |
+<%= link_to 'Delete this story', story_path(@story), method: 'delete' %>
 <% end %>
 
 <br/>
