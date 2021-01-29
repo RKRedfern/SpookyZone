@@ -9,8 +9,10 @@ class StoriesController < ApplicationController
         end
     end
 
-    def index 
-        if params[:user_id] && @user = User.find_by_id(params[:user_id])
+    def index
+        if params[:title] 
+            @stories = Story.search(params[:title])
+        elsif params[:user_id] && @user = User.find_by_id(params[:user_id])
             @stories = @user.stories
         else
             @error = "That user doesn't exist" if params[:user_id]

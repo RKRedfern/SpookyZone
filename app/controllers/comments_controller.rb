@@ -2,7 +2,6 @@ class CommentsController < ApplicationController
     before_action :redirect_if_not_logged_in
 
     def index
-        #check if it's nested AND check if this method returns anything - nil or something 
         if params[:story_id] && @story = Story.find_by_id(params[:story_id])
             @comments = @story.comments
         else
@@ -12,13 +11,11 @@ class CommentsController < ApplicationController
     end
 
     def new
-        #If there is a story id present, and if we can successfully find that post by the id given
         if params[:story_id] && @story = Story.find_by_id(params[:story_id])
             @comment = @story.comments.build
         else
             @error = "That story doesn't exist" if params[:story_id]
             @comment = Comment.new
-        #if there is no story id present we just carry on living our lives. 
         end
     end
 
@@ -31,16 +28,15 @@ class CommentsController < ApplicationController
         end
     end
 
+    before_action :find_comment_by_id
+
     def show
-        @comment = Comment.find_by(id: params[:id])
     end
 
     def edit
-        @comment = Comment.find_by(id: params[:id])
     end
 
     def update
-        @comment = Comment.find_by(id: params[:id])
         if @comment.update(comment_params)
             redirect_to comment_path(@comment)
         else
@@ -49,7 +45,6 @@ class CommentsController < ApplicationController
     end
 
     def destroy
-        @comment = Comment.find(params[:id])
         @comment.destroy
         redirect_to comments_path
     end

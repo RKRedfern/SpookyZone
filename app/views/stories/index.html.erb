@@ -8,3 +8,12 @@
     <%= render partial: "stories", locals: {stories: @stories} %>
 
 <% end %>
+
+
+<%= form_tag(stories_path, method:"get") do %>
+
+<%= label_tag 'Search By Title:' %>
+<%= search_field_tag 'title' %>
+<%= submit_tag 'Submit' %>
+
+<% end %>

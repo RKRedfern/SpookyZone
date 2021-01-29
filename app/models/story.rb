@@ -10,6 +10,9 @@ class Story < ApplicationRecord
 
   scope :alpha, -> { order(:title) }
 
+  def self.search(input)
+    self.where("title LIKE (?)", "%#{input}%")
+  end
 
   def aggressive_authoring
       stories_today = user.stories.select do |s|
